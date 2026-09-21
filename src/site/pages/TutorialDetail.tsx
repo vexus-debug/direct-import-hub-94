@@ -35,15 +35,25 @@ const TutorialDetail = () => {
             </Link>
           </nav>
 
-          <ol className="space-y-8">
+          <ol className="space-y-10">
             {(tutorial.steps ?? []).map((step, i) => (
               <li key={step.title} className="flex gap-5">
                 <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary/10 text-xs font-semibold text-primary">
                   {i + 1}
                 </span>
-                <div>
+                <div className="min-w-0 flex-1">
                   <h2 className="text-base font-semibold">{step.title}</h2>
                   <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{step.body}</p>
+                  {step.image && (
+                    <figure className="mt-4 overflow-hidden rounded-md border border-border bg-muted/30">
+                      <img
+                        src={step.image}
+                        alt={step.imageAlt ?? step.title}
+                        loading="lazy"
+                        className="w-full"
+                      />
+                    </figure>
+                  )}
                 </div>
               </li>
             ))}
